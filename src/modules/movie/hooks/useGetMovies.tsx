@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { IMovie } from "../types/movie";
 
-export const getMovies = (genre?: string) => {
+export const useGetMovies = (genre?: string) => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -14,7 +14,7 @@ export const getMovies = (genre?: string) => {
         setLoading(false);
         setMovies(data);
       });
-  }, []);
+  }, [genre]);
 
   return { movies, loading };
 };

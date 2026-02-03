@@ -1,7 +1,7 @@
-import { getMovies } from "../hooks/getMovies";
+import { useGetMovies } from "../hooks/useGetMovies";
 
 export const AllMovies = () => {
-  const { movies, loading } = getMovies();
+  const { movies, loading } = useGetMovies();
 
   if (loading) {
     return <h1>Unshij bn</h1>;
