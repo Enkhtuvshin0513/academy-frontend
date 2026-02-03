@@ -9,11 +9,12 @@ export const AddMovie = () => {
     const value = inputRef?.current?.value;
 
     if (!value) {
-      window.alert("Title oruulna uu");
+      return window.alert("Title oruulna uu");
     }
 
-    addMovie();
+    addMovie(value);
   };
+
   return (
     <div>
       <input ref={inputRef} placeholder="Movie title" />
