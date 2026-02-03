@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
-import type { IMovie } from "../types/movie";
+import { useGetMoviesTans } from "../hooks/useGetMoviesTans";
 
 export const DramaMovies = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { movies, loading } = useGetMoviesTans("Drama");
 
-  useEffect(() => {
-    fetch("http://localhost:3000/movie/movies?genre=Drama")
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setLoading(false);
-        setMovies(data);
-      });
-  }, []);
+  if (loading) {
+    return <h1>Unshij bn</h1>;
+  }
 
   if (loading) {
     return <h1>Unshij bn</h1>;
@@ -22,7 +13,7 @@ export const DramaMovies = () => {
 
   return (
     <>
-      {movies.map(movie => {
+      {movies?.map(movie => {
         return <p>{movie.title}</p>;
       })}
     </>

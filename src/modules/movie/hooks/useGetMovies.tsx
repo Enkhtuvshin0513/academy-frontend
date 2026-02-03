@@ -6,7 +6,7 @@ export const useGetMovies = (genre?: string) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/movie/movies?genre=${genre}`)
+    fetch(`http://localhost:3000/movie/movies`)
       .then(res => {
         return res.json();
       })
