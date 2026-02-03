@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { AllMovies } from "./AllMovies";
 import { DramaMovies } from "./DramaMovies";
+import { AddMovie } from "./AddMovie";
+
+export const MovieContent = ({ dataType }: { dataType: string }) => {
+  if (dataType === "all") {
+    return <AllMovies />;
+  }
+  if (dataType === "drama") {
+    return <DramaMovies />;
+  }
+  return <AddMovie />;
+};
 
 export const MovieMain = () => {
   const [dataType, setDataType] = useState<string>("all");
@@ -12,7 +23,9 @@ export const MovieMain = () => {
     <>
       <button onClick={() => changeDataType("all")}>all movies</button>
       <button onClick={() => changeDataType("drama")}>Drama movies</button>
-      {dataType === "all" ? <AllMovies /> : <DramaMovies />}
+      <button onClick={() => changeDataType("addMovie")}>Add movie</button>
+
+      <MovieContent dataType={dataType} />
     </>
   );
 };
