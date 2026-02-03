@@ -1,34 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-
-interface IMovie {
-  title: string;
-}
+import { AllMovies } from "./modules/movie/components/AllMovies";
+import { DramaMovies } from "./modules/movie/components/DramaMovies";
 
 function App() {
-  const [movies, setMovies] = useState<IMovie[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [dataType, setDataType] = useState<string>("all");
 
-  useEffect(() => {
-    fetch("http://localhost:3000/movie/movies")
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setLoading(false);
-        setMovies(data);
-      });
-  }, []);
-
-  if (loading) {
-    return <h1>Unshij bn</h1>;
-  }
+  const changeDataType = (type: string) => {
+    setDataType(type);
+  };
 
   return (
     <>
-      {movies.map(movie => {
-        return <h1>{movie.title}</h1>;
-      })}
+      <button onClick={() => changeDataType("all")}>all movies</button>
+      <button onClick={() => changeDataType("drama")}>Drama movies</button>
+      {dataType === "all" ? <AllMovies /> : <DramaMovies />}
     </>
   );
 }
